@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -6,7 +6,7 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 
@@ -26,45 +26,76 @@ app = FastAPI()
 api_router = APIRouter(prefix="/api")
 
 
-# Define Models
-class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
+# Score Models
+class ScoreSubmission(BaseModel):
+    name: str
+    score: int
+    game_type: str = "groove-orbit-runner"  # Default to game A
+
+class Score(BaseModel):
+    model_config = ConfigDict(extra="ignore")
     
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
+    name: str
+    score: int
+    game_type: str
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-class StatusCheckCreate(BaseModel):
-    client_name: str
+class LeaderboardEntry(BaseModel):
+    name: str
+    score: int
+    game_type: str
+    timestamp: str
+    rank: Optional[int] = None
 
-# Add your routes to the router instead of directly to app
+# Routes
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Space Groove Arcade API"}
 
-@api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.model_dump()
-    status_obj = StatusCheck(**status_dict)
+@api_router.post("/score", response_model=Score)
+async def submit_score(submission: ScoreSubmission):
+    """Submit a new score to the leaderboard"""
+    score_obj = Score(
+        name=submission.name,
+        score=submission.score,
+        game_type=submission.game_type
+    )
     
     # Convert to dict and serialize datetime to ISO string for MongoDB
-    doc = status_obj.model_dump()
+    doc = score_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
     
-    _ = await db.status_checks.insert_one(doc)
-    return status_obj
+    await db.scores.insert_one(doc)
+    return score_obj
 
-@api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+@api_router.get("/leaderboard", response_model=List[LeaderboardEntry])
+async def get_leaderboard(game_type: Optional[str] = None, limit: int = 100):
+    """Get leaderboard - optionally filtered by game type"""
+    query = {}
+    if game_type:
+        query['game_type'] = game_type
     
-    # Convert ISO string timestamps back to datetime objects
-    for check in status_checks:
-        if isinstance(check['timestamp'], str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
+    # Get scores sorted by score descending
+    scores = await db.scores.find(query, {"_id": 0}).sort("score", -1).limit(limit).to_list(limit)
     
-    return status_checks
+    # Convert timestamps and add rank
+    leaderboard = []
+    for idx, score in enumerate(scores, 1):
+        if isinstance(score['timestamp'], str):
+            timestamp_str = score['timestamp']
+        else:
+            timestamp_str = score['timestamp'].isoformat()
+        
+        leaderboard.append(LeaderboardEntry(
+            name=score['name'],
+            score=score['score'],
+            game_type=score['game_type'],
+            timestamp=timestamp_str,
+            rank=idx
+        ))
+    
+    return leaderboard
 
 # Include the router in the main app
 app.include_router(api_router)
