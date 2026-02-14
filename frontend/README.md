@@ -1,70 +1,332 @@
-# Getting Started with Create React App
+# 🎮 Space Groove Arcade - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Structure du Projet
 
-## Available Scripts
+```
+frontend/
+├── public/
+│   └── index.html              # Point d'entrée HTML
+├── src/
+│   ├── components/
+│   │   └── ui/                 # Composants Shadcn UI
+│   ├── pages/
+│   │   ├── Home.js             # Menu principal
+│   │   ├── GrooveOrbitRunner.js # Jeu A avec Phaser
+│   │   ├── Leaderboard.js      # Classement
+│   │   └── ComingSoon.js       # Placeholder jeux B & C
+│   ├── App.js                  # Router principal
+│   ├── App.css                 # Styles du jeu
+│   └── index.css               # Styles globaux + Design tokens
+├── package.json
+├── tailwind.config.js          # Configuration Tailwind + couleurs custom
+└── .env                        # Variables d'environnement
+```
 
-In the project directory, you can run:
+## 🎨 Design System
 
-### `npm start`
+### Couleurs Custom (Tailwind)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```javascript
+// tailwind.config.js
+colors: {
+  'space-black': '#050612',   // Fond principal
+  'deep-purple': '#0d0221',   // Surfaces
+  'neon-pink': '#ff71ce',     // Primary
+  'cyan-pop': '#01cdfe',      // Secondary
+  'retro-gold': '#fffb96',    // Accent
+  'acid-green': '#05ffa1'     // Success/Obstacles
+}
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Fonts
 
-### `npm test`
+```css
+/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Press+Start+2P&display=swap');
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+font-family: {
+  orbitron: ['Orbitron', 'sans-serif'],      // Titres
+  rajdhani: ['Rajdhani', 'sans-serif'],      // Corps
+  accent: ['Press Start 2P', 'cursive']      // Score/UI
+}
+```
 
-### `npm run build`
+### Animations
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```css
+/* Starfield background */
+.starfield {
+  animation: twinkle 8s ease-in-out infinite;
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+/* Text shimmer effect */
+animate-text-shimmer {
+  animation: text-shimmer 3s ease-in-out infinite;
+  background: linear-gradient(90deg, #ff71ce, #01cdfe, #ff71ce);
+  background-size: 200% auto;
+}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🎮 Intégration Phaser
 
-### `npm run eject`
+### Configuration
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```javascript
+// GrooveOrbitRunner.js
+const config = {
+  type: Phaser.AUTO,
+  width: 390,
+  height: 844,
+  parent: gameRef.current,
+  backgroundColor: '#050612',
+  physics: {
+    default: 'arcade',
+    arcade: {
+      gravity: { y: 0 },
+      debug: false
+    }
+  },
+  scene: {
+    create: createGame,
+    update: updateGame
+  }
+};
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Éléments du Jeu
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Starfield (100 étoiles)**
+   - Position aléatoire
+   - Taille 1-2px
+   - Alpha 0.3-0.8
+   - Animation de scintillement
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **Planète centrale**
+   - 3 cercles concentriques (disco effect)
+   - Couleurs: neon-pink, cyan-pop, retro-gold
+   - Position fixe au centre (195, 422)
 
-## Learn More
+3. **Orbites**
+   - 3 rayons: 150px, 220px, 290px
+   - Lignes blanches semi-transparentes
+   - Rotation constante
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. **Joueur**
+   - Cercle rose de 12px
+   - Rotation autour de la planète
+   - Transition smooth entre orbites (200ms)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. **Obstacles**
+   - Cercles verts (acid-green) de 10px
+   - Spawn aléatoire sur les 3 orbites
+   - Vitesse progressive
 
-### Code Splitting
+### Mécaniques
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```javascript
+// Changement d'orbite
+scene.input.on('pointerdown', () => {
+  currentOrbit = (currentOrbit + 1) % orbits.length;
+  scene.tweens.add({
+    targets: player,
+    x: newX,
+    y: newY,
+    duration: 200,
+    ease: 'Power2'
+  });
+});
 
-### Analyzing the Bundle Size
+// Détection de collision
+const dist = Phaser.Math.Distance.Between(
+  player.x, player.y, 
+  obstacle.x, obstacle.y
+);
+if (dist < 20) endGame();
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+// Système de score
+if (obstaclePassed) {
+  score += 10;
+  if (score % 100 === 0) {
+    speed += 0.3;
+    spawnInterval -= 100;
+  }
+}
+```
 
-### Making a Progressive Web App
+## 🔌 API Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Configuration
 
-### Advanced Configuration
+```javascript
+// App.js
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Endpoints Utilisés
 
-### Deployment
+```javascript
+// Soumettre un score
+await axios.post(`${API}/score`, {
+  name: playerName,
+  score: finalScore,
+  game_type: 'groove-orbit-runner'
+});
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+// Récupérer le leaderboard
+const response = await axios.get(`${API}/leaderboard`, {
+  params: { game_type: filter }
+});
+```
 
-### `npm run build` fails to minify
+## 📱 Optimisations Mobile
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Touch Actions
+
+```css
+/* App.css */
+.game-container {
+  touch-action: none;           /* Désactive le scroll */
+  -webkit-user-select: none;    /* Désactive la sélection */
+}
+```
+
+### Viewport
+
+```html
+<!-- public/index.html -->
+<meta name="viewport" 
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+```
+
+### Performance
+
+1. **Canvas unique** - Pas de redraw inutile
+2. **Object pooling** - Réutilisation des obstacles
+3. **RAF sync** - Phaser utilise requestAnimationFrame
+4. **CSS GPU acceleration** - transforms 3D
+
+## 🧩 Composants Principaux
+
+### Home.js
+- Menu de sélection des jeux
+- Cards avec hover effects
+- Navigation vers jeu/leaderboard
+
+### GrooveOrbitRunner.js
+- Composant Phaser
+- Game loop complet
+- Modal game over
+- Soumission de score
+
+### Leaderboard.js
+- Fetch des scores
+- Filtres par jeu
+- Système de ranking
+- Couleurs top 3
+
+### ComingSoon.js
+- Placeholder pour jeux futurs
+- Navigation de retour
+
+## 🚀 Build & Deployment
+
+### Développement
+
+```bash
+yarn start
+# Ouvre http://localhost:3000
+```
+
+### Production
+
+```bash
+yarn build
+# Crée /build avec optimisations:
+# - Minification JS/CSS
+# - Tree shaking
+# - Code splitting
+# - Assets hashing
+```
+
+### Variables d'Environnement
+
+```bash
+# .env
+REACT_APP_BACKEND_URL=https://votre-domaine.com
+```
+
+## 🎯 Data Test IDs
+
+Pour tests automatisés (Playwright/Cypress) :
+
+```javascript
+// Home
+data-testid="main-title"
+data-testid="game-card-groove-orbit-runner"
+data-testid="leaderboard-button"
+
+// Game
+data-testid="game-over-modal"
+data-testid="final-score"
+data-testid="player-name-input"
+data-testid="submit-score-button"
+
+// Leaderboard
+data-testid="filter-all"
+data-testid="leaderboard-entry-0"
+```
+
+## 🐛 Debugging
+
+### Console Logs
+
+```javascript
+// Activer les logs Phaser
+const config = {
+  // ...
+  physics: {
+    arcade: { debug: true }  // Affiche hitboxes
+  }
+};
+```
+
+### React DevTools
+
+```bash
+# Installer l'extension navigateur
+# Inspecter composants et props
+```
+
+## 📦 Dépendances Clés
+
+```json
+{
+  "phaser": "^3.90.0",              // Game engine
+  "react-router-dom": "^7.5.1",     // Routing
+  "axios": "^1.8.4",                // HTTP
+  "lucide-react": "^0.507.0",       // Icons
+  "tailwindcss": "^3.4.17",         // Styling
+  "sonner": "^2.0.3"                // Toasts (future)
+}
+```
+
+## 🔧 Scripts Utiles
+
+```bash
+# Lint
+yarn lint
+
+# Format
+yarn format
+
+# Analyze bundle
+yarn build && npx source-map-explorer 'build/static/js/*.js'
+
+# Clear cache
+rm -rf node_modules/.cache
+```
+
+---
+
+**Happy Coding! 🚀**
