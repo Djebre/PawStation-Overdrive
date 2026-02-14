@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-02-14T23:28:25.540707",
+  "summary": {
+    "tests_run": 5,
+    "tests_passed": 5,
+    "success_rate": 100.0
+  },
+  "detailed_results": [
+    {
+      "test": "API Root",
+      "success": true,
+      "status_code": 200,
+      "expected_status": 200,
+      "response": "{\"message\":\"Space Groove Arcade API\"}"
+    },
+    {
+      "test": "Submit Score",
+      "success": true,
+      "status_code": 200,
+      "expected_status": 200,
+      "response": "{\"id\":\"8cd1a227-2e69-4df6-942b-acc7ec04839f\",\"name\":\"TestPlayer_232824\",\"score\":1250,\"game_type\":\"groove-orbit-runner\",\"timestamp\":\"2026-02-14T23:28:24.808999Z\"}"
+    },
+    {
+      "test": "Get All Leaderboard",
+      "success": true,
+      "status_code": 200,
+      "expected_status": 200,
+      "response": "[{\"name\":\"TestPlayer_232824\",\"score\":1250,\"game_type\":\"groove-orbit-runner\",\"timestamp\":\"2026-02-14T23:28:24.808999+00:00\",\"rank\":1},{\"name\":\"SpaceRunner\",\"score\":420,\"game_type\":\"groove-orbit-runner\",\"timestamp\":\"2026-02-14T23:26:46.132669+00:00\",\"rank\":2},{\"name\":\"FurryGamer\",\"score\":280,\"game_type\":\"groove-orbit-runner\",\"timestamp\":\"2026-02-14T23:26:46.014772+00:00\",\"rank\":3},{\"name\":\"TestPlayer\",\"score\":150,\"game_type\":\"groove-orbit-runner\",\"timestamp\":\"2026-02-14T23:26:41.302793+00:00\",\"ran"
+    },
+    {
+      "test": "Get Filtered Leaderboard",
+      "success": true,
+      "status_code": 200,
+      "expected_status": 200,
+      "response": "[{\"name\":\"TestPlayer_232824\",\"score\":1250,\"game_type\":\"groove-orbit-runner\",\"timestamp\":\"2026-02-14T23:28:24.808999+00:00\",\"rank\":1},{\"name\":\"SpaceRunner\",\"score\":420,\"game_type\":\"groove-orbit-runner\",\"timestamp\":\"2026-02-14T23:26:46.132669+00:00\",\"rank\":2},{\"name\":\"FurryGamer\",\"score\":280,\"game_type\":\"groove-orbit-runner\",\"timestamp\":\"2026-02-14T23:26:46.014772+00:00\",\"rank\":3},{\"name\":\"TestPlayer\",\"score\":150,\"game_type\":\"groove-orbit-runner\",\"timestamp\":\"2026-02-14T23:26:41.302793+00:00\",\"ran"
+    },
+    {
+      "test": "Invalid Score Submission",
+      "success": true,
+      "status_code": 422,
+      "expected_status": 422,
+      "response": "{\"detail\":[{\"type\":\"int_parsing\",\"loc\":[\"body\",\"score\"],\"msg\":\"Input should be a valid integer, unable to parse string as an integer\",\"input\":\"invalid\",\"url\":\"https://errors.pydantic.dev/2.12/v/int_parsing\"}]}"
+    }
+  ]
+}
