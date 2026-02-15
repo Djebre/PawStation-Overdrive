@@ -152,6 +152,17 @@ Cette application utilise des technologies modernes pour offrir une expérience 
                     em: ({node, ...props}) => <em className="text-retro-gold" {...props} />,
                     blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-cyan-pop pl-4 italic text-gray-400 my-4" {...props} />,
                     hr: ({node, ...props}) => <hr className="border-white/20 my-6" {...props} />,
+                    a: ({node, href, children, ...props}) => (
+                      <a 
+                        href={href} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-neon-pink hover:text-cyan-pop underline transition-colors"
+                        {...props}
+                      >
+                        {children}
+                      </a>
+                    ),
                   }}
                 >
                   {aboutContent}
