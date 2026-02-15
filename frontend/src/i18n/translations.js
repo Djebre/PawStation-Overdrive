@@ -63,6 +63,19 @@ export const translations = {
       design: 'Design',
       version: 'Version 1.0.0 • Février 2026',
       footer: 'PawStation Overdrive • Collection Arcade Space Groove',
+      // Tech descriptions
+      techReact: 'Framework UI moderne',
+      techPhaser: 'Moteur de jeu HTML5',
+      techFastAPI: 'Framework Python haute performance',
+      techMongoDB: 'Base de données NoSQL',
+      techPydantic: 'Validation des données',
+      techMotor: 'Driver MongoDB async',
+      techDocker: 'Conteneurisation',
+      techSSL: 'Certificats SSL',
+      techOrbitron: 'Typographie titres',
+      techRajdhani: 'Typographie corps',
+      techPressStart: 'Typographie accents',
+      techTheme: 'Thème néon',
     },
     // Coming Soon
     comingSoon: {
@@ -140,6 +153,19 @@ export const translations = {
       design: 'Design',
       version: 'Version 1.0.0 • February 2026',
       footer: 'PawStation Overdrive • Space Groove Arcade Collection',
+      // Tech descriptions
+      techReact: 'Modern UI framework',
+      techPhaser: 'HTML5 game engine',
+      techFastAPI: 'High-performance Python framework',
+      techMongoDB: 'NoSQL database',
+      techPydantic: 'Data validation',
+      techMotor: 'Async MongoDB driver',
+      techDocker: 'Containerization',
+      techSSL: 'SSL certificates',
+      techOrbitron: 'Title typography',
+      techRajdhani: 'Body typography',
+      techPressStart: 'Accent typography',
+      techTheme: 'Neon theme',
     },
     // Coming Soon
     comingSoon: {
