@@ -31,6 +31,7 @@ class ScoreSubmission(BaseModel):
     name: str
     score: int
     game_type: str = "groove-orbit-runner"  # Default to game A
+    telegram: Optional[str] = None  # Telegram username (optional)
 
 class Score(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -39,6 +40,7 @@ class Score(BaseModel):
     name: str
     score: int
     game_type: str
+    telegram: Optional[str] = None
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class LeaderboardEntry(BaseModel):
@@ -47,6 +49,7 @@ class LeaderboardEntry(BaseModel):
     game_type: str
     timestamp: str
     rank: Optional[int] = None
+    telegram: Optional[str] = None
 
 # Routes
 @api_router.get("/")
@@ -59,7 +62,8 @@ async def submit_score(submission: ScoreSubmission):
     score_obj = Score(
         name=submission.name,
         score=submission.score,
-        game_type=submission.game_type
+        game_type=submission.game_type,
+        telegram=submission.telegram
     )
     
     # Convert to dict and serialize datetime to ISO string for MongoDB
@@ -92,10 +96,41 @@ async def get_leaderboard(game_type: Optional[str] = None, limit: int = 100):
             score=score['score'],
             game_type=score['game_type'],
             timestamp=timestamp_str,
-            rank=idx
+            rank=idx,
+            telegram=score.get('telegram')
         ))
     
     return leaderboard
+
+@api_router.get("/leaderboard/export")
+async def export_leaderboard(game_type: Optional[str] = None, format: str = "csv"):
+    """Export leaderboard data as CSV or JSON"""
+    query = {}
+    if game_type:
+        query['game_type'] = game_type
+    
+    # Get all scores sorted by score descending
+    scores = await db.scores.find(query, {"_id": 0}).sort("score", -1).to_list(1000)
+    
+    if format == "json":
+        return scores
+    
+    # CSV format
+    import io
+    output = io.StringIO()
+    output.write("Rang,Nom,Score,Jeu,Telegram,Date\n")
+    
+    for idx, score in enumerate(scores, 1):
+        timestamp = score.get('timestamp', '')
+        telegram = score.get('telegram', '') or ''
+        output.write(f"{idx},{score['name']},{score['score']},{score['game_type']},{telegram},{timestamp}\n")
+    
+    from fastapi.responses import Response
+    return Response(
+        content=output.getvalue(),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=leaderboard.csv"}
+    )
 
 # Include the router in the main app
 app.include_router(api_router)
