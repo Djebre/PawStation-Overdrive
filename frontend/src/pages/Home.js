@@ -9,6 +9,13 @@ export default function Home() {
   const navigate = useNavigate();
   const { t } = useLanguage();
 
+  // Music pour la page d'accueil
+  const music = useMusic('/music/home.mp3', {
+    autoplay: true,
+    loop: true,
+    volume: 0.3,
+  });
+
   // Configuration des jeux depuis les variables d'environnement
   const gameAEnabled = process.env.REACT_APP_GAME_A_ENABLED !== 'false';
   const gameBEnabled = process.env.REACT_APP_GAME_B_ENABLED === 'true';
