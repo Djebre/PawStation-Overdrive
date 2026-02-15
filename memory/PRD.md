@@ -45,6 +45,8 @@ Développer un jeu web mobile pour une convention "Space Groove". Le jeu doit ê
 - ✅ Système de musique avec volume
 - ✅ Docker & Docker Compose
 - ✅ Système d'activation/désactivation des jeux (avec Coming Soon visible)
+- ✅ **Particules flottantes** sur la page d'accueil
+- ✅ **Fond réactif à la musique** (visualisation audio)
 
 ## Prioritized Backlog
 
