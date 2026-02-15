@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Phaser from 'phaser';
 import axios from 'axios';
-import { X, Trophy } from 'lucide-react';
+import { X, Trophy, Send } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -16,6 +16,7 @@ export default function GrooveOrbitRunner() {
   const [gameOver, setGameOver] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
   const [playerName, setPlayerName] = useState('');
+  const [telegramUsername, setTelegramUsername] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
