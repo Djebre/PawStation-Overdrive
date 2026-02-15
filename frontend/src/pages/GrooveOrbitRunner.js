@@ -301,6 +301,25 @@ export default function GrooveOrbitRunner() {
                 />
               </div>
 
+              <div>
+                <label className="block text-sm font-rajdhani text-gray-400 mb-2">
+                  <Send className="w-4 h-4 inline mr-2" />
+                  {t('game.telegram')}
+                </label>
+                <input
+                  type="text"
+                  value={telegramUsername}
+                  onChange={(e) => setTelegramUsername(e.target.value.replace(/^@/, ''))}
+                  placeholder={t('game.telegramPlaceholder')}
+                  maxLength={32}
+                  className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white placeholder-gray-500 focus:border-cyan-pop focus:ring-1 focus:ring-cyan-pop transition-all outline-none font-rajdhani"
+                  data-testid="telegram-input"
+                />
+                <p className="text-xs text-gray-500 mt-1 font-rajdhani">
+                  {t('game.telegramHint')}
+                </p>
+              </div>
+
               <button
                 type="submit"
                 disabled={submitting || !playerName.trim()}
