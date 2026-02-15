@@ -47,6 +47,9 @@ Développer un jeu web mobile pour une convention "Space Groove". Le jeu doit ê
 - ✅ Système d'activation/désactivation des jeux (avec Coming Soon visible)
 - ✅ **Particules flottantes** sur la page d'accueil
 - ✅ **Fond réactif à la musique** (visualisation audio)
+- ✅ **Champ Telegram** dans le formulaire Game Over
+- ✅ **Lien Telegram cliquable** sur la page About
+- ✅ **Export CSV du leaderboard** (bouton + API)
 
 ## Prioritized Backlog
 
