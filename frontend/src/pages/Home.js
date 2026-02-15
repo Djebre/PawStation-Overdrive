@@ -50,6 +50,8 @@ export default function Home() {
     <div className="min-h-screen bg-space-black relative overflow-hidden">
       <div className="starfield"></div>
       
+      <LanguageSelector />
+      
       <div className="relative z-10 flex flex-col min-h-screen max-w-md mx-auto p-6">
         <header className="text-center py-12">
           <h1 
@@ -64,10 +66,10 @@ export default function Home() {
             }}
             data-testid="main-title"
           >
-            Space Groove
+            {t('home.title')}
           </h1>
           <p className="text-cyan-pop font-rajdhani text-lg tracking-wider" data-testid="subtitle">
-            Arcade Collection
+            {t('home.subtitle')}
           </p>
         </header>
 
@@ -75,10 +77,10 @@ export default function Home() {
           <div className="bg-retro-gold/20 border-2 border-retro-gold rounded-xl p-6 mb-6">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-3 h-3 bg-retro-gold rounded-full animate-pulse"></div>
-              <h3 className="text-xl font-orbitron font-black text-retro-gold">Mode Maintenance</h3>
+              <h3 className="text-xl font-orbitron font-black text-retro-gold">{t('home.maintenance')}</h3>
             </div>
             <p className="text-white font-rajdhani">
-              Les jeux sont temporairement indisponibles. Merci de votre patience !
+              {t('home.maintenanceMsg')}
             </p>
           </div>
         )}
@@ -86,7 +88,7 @@ export default function Home() {
         {games.length === 0 && !maintenanceMode && (
           <div className="bg-deep-purple/30 backdrop-blur-xl border border-white/10 rounded-xl p-8 mb-6 text-center">
             <p className="text-gray-400 font-rajdhani text-lg">
-              Aucun jeu n'est actuellement disponible.
+              {t('home.noGames')}
             </p>
           </div>
         )}
