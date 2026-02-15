@@ -4,6 +4,12 @@ import { Rocket, Waves, Zap, Trophy, Info } from 'lucide-react';
 export default function Home() {
   const navigate = useNavigate();
 
+  // Configuration des jeux depuis les variables d'environnement
+  const gameAEnabled = process.env.REACT_APP_GAME_A_ENABLED !== 'false';
+  const gameBEnabled = process.env.REACT_APP_GAME_B_ENABLED === 'true';
+  const gameCEnabled = process.env.REACT_APP_GAME_C_ENABLED === 'true';
+  const maintenanceMode = process.env.REACT_APP_MAINTENANCE_MODE === 'true';
+
   const games = [
     {
       id: 'groove-orbit-runner',
@@ -11,8 +17,9 @@ export default function Home() {
       subtitle: 'Arcade Skill-Based',
       description: 'Change orbits, dodge obstacles, survive the disco cosmos',
       icon: Rocket,
-      available: true,
-      gradient: 'from-neon-pink to-cyan-pop'
+      available: gameAEnabled && !maintenanceMode,
+      gradient: 'from-neon-pink to-cyan-pop',
+      enabled: gameAEnabled
     },
     {
       id: 'space-groove-drift',
@@ -20,8 +27,9 @@ export default function Home() {
       subtitle: 'Chill Aesthetic',
       description: 'Surf cosmic waves in a vaporwave paradise',
       icon: Waves,
-      available: false,
-      gradient: 'from-cyan-pop to-retro-gold'
+      available: gameBEnabled && !maintenanceMode,
+      gradient: 'from-cyan-pop to-retro-gold',
+      enabled: gameBEnabled
     },
     {
       id: 'groove-arena-overdrive',
@@ -29,10 +37,11 @@ export default function Home() {
       subtitle: 'Competitive Hardcore',
       description: 'Dash to the beat, survive the overdrive',
       icon: Zap,
-      available: false,
-      gradient: 'from-retro-gold to-acid-green'
+      available: gameCEnabled && !maintenanceMode,
+      gradient: 'from-retro-gold to-acid-green',
+      enabled: gameCEnabled
     }
-  ];
+  ].filter(game => game.enabled); // Filtrer les jeux désactivés
 
   return (
     <div className="min-h-screen bg-space-black relative overflow-hidden">
