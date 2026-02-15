@@ -116,11 +116,11 @@ Cette application utilise des technologies modernes pour offrir une expérience 
             data-testid="back-button"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span className="font-rajdhani font-bold">{language === 'en' ? 'Back' : 'Retour'}</span>
+            <span className="font-rajdhani font-bold">{t('about.back')}</span>
           </button>
           
           <h1 className="text-4xl md:text-5xl font-orbitron font-black text-white mb-4" data-testid="about-title">
-            {language === 'en' ? 'About' : 'À Propos'}
+            {t('about.title')}
           </h1>
         </header>
 
@@ -130,7 +130,7 @@ Cette application utilise des technologies modernes pour offrir une expérience 
             {loading ? (
               <div className="text-center py-8">
                 <div className="text-cyan-pop font-rajdhani text-lg animate-pulse">
-                  {language === 'en' ? 'Loading...' : 'Chargement...'}
+                  {t('about.loading')}
                 </div>
               </div>
             ) : (
@@ -162,7 +162,7 @@ Cette application utilise des technologies modernes pour offrir une expérience 
 
           {/* Tech Stack */}
           <h2 className="text-3xl font-orbitron font-black text-white mb-6">
-            {language === 'en' ? 'Tech Stack' : 'Stack Technique'}
+            {t('about.techStack')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {techStack.map((category) => {
@@ -203,10 +203,10 @@ Cette application utilise des technologies modernes pour offrir une expérience 
         {/* Footer info */}
         <div className="text-center py-6 border-t border-white/10">
           <p className="text-gray-500 font-rajdhani text-sm">
-            Version 1.0.0 • Février 2026
+            {t('about.version')}
           </p>
           <p className="text-gray-600 font-rajdhani text-xs mt-2">
-            PawStation Overdrive • Space Groove Arcade Collection
+            {t('about.footer')}
           </p>
         </div>
       </div>
