@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: spacegroove-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: spacegroove_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - spacegroove-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: spacegroove-backend
+    restart: unless-stopped
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017
+      - DB_NAME=spacegroove_db
+      - CORS_ORIGINS=*
+    ports:
+      - "8001:8001"
+    depends_on:
+      - mongodb
+    networks:
+      - spacegroove-network
+    volumes:
+      - ./backend:/app
+    command: uvicorn server:app --host 0.0.0.0 --port 8001 --reload
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_BACKEND_URL=http://localhost:8001
+    container_name: spacegroove-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - spacegroove-network
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  spacegroove-network:
+    driver: bridge
