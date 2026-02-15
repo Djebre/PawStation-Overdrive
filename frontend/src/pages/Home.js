@@ -68,6 +68,26 @@ export default function Home() {
           </p>
         </header>
 
+        {maintenanceMode && (
+          <div className="bg-retro-gold/20 border-2 border-retro-gold rounded-xl p-6 mb-6">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-3 h-3 bg-retro-gold rounded-full animate-pulse"></div>
+              <h3 className="text-xl font-orbitron font-black text-retro-gold">Mode Maintenance</h3>
+            </div>
+            <p className="text-white font-rajdhani">
+              Les jeux sont temporairement indisponibles. Merci de votre patience !
+            </p>
+          </div>
+        )}
+
+        {games.length === 0 && !maintenanceMode && (
+          <div className="bg-deep-purple/30 backdrop-blur-xl border border-white/10 rounded-xl p-8 mb-6 text-center">
+            <p className="text-gray-400 font-rajdhani text-lg">
+              Aucun jeu n'est actuellement disponible.
+            </p>
+          </div>
+        )}
+
         <div className="flex-1 space-y-6 mb-8">
           {games.map((game) => {
             const Icon = game.icon;
