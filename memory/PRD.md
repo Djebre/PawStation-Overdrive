@@ -20,28 +20,31 @@ Développer un jeu web mobile pour une convention "Space Groove". Le jeu doit ê
 5. **Page About** : ✅ Contenu dynamique depuis fichiers texte (FR/EN)
 
 6. **Gestion des jeux** : ✅ Activation/désactivation via variables d'environnement
+   - ✅ Les jeux désactivés affichent "Coming Soon" au lieu de disparaître
 
-7. **Internationalisation** : ✅ Support FR/EN avec sélecteur de langue
+7. **Internationalisation** : ✅ Support FR/EN complet sur toutes les pages
+   - ✅ Home, About, Leaderboard, Coming Soon, Game Over modal
 
 8. **Musique** : ✅ Musique de fond avec contrôle de volume (placeholder tracks)
 
 9. **Branding** : ✅ Aucun branding "Emergent"
 
-10. **Anonymisation** : ✅ Références "furry" supprimées
+10. **Anonymisation** : ✅ Références "furry" supprimées du code
 
 ## Tech Stack
 - **Frontend** : React, Phaser.js, react-i18next, Tailwind CSS
 - **Backend** : FastAPI, MongoDB (motor driver)
 - **DevOps** : Docker, Docker Compose, Nginx
 
-## What's Implemented
+## What's Implemented (Décembre 2025)
 - ✅ Jeu "Groove Orbit Runner" complet
 - ✅ Leaderboard et système de scores
-- ✅ Traduction FR/EN avec sélecteur
+- ✅ Traduction FR/EN complète sur toutes les pages
 - ✅ Page About dynamique (about.fr.txt / about.en.txt)
+- ✅ Page Coming Soon traduite
 - ✅ Système de musique avec volume
 - ✅ Docker & Docker Compose
-- ✅ Système d'activation/désactivation des jeux
+- ✅ Système d'activation/désactivation des jeux (avec Coming Soon visible)
 
 ## Prioritized Backlog
 
@@ -55,12 +58,17 @@ Développer un jeu web mobile pour une convention "Space Groove". Le jeu doit ê
 - [ ] Améliorer les effets visuels des jeux
 
 ## Key Files
+- `frontend/src/pages/Home.js` - Page principale avec sélection des jeux
 - `frontend/src/pages/About.js` - Page About avec i18n
+- `frontend/src/pages/ComingSoon.js` - Page Coming Soon traduite
+- `frontend/src/pages/Leaderboard.js` - Classement traduit
+- `frontend/src/pages/GrooveOrbitRunner.js` - Premier jeu avec i18n
+- `frontend/src/i18n/translations.js` - Toutes les traductions FR/EN
 - `frontend/public/about.fr.txt` - Contenu About en français
 - `frontend/public/about.en.txt` - Contenu About en anglais
-- `frontend/src/components/game/GrooveOrbitRunner.js` - Premier jeu
 - `backend/server.py` - API FastAPI
 
 ## Notes
 - L'utilisateur gère le Docker lui-même
 - Préférence pour docker compose (v2) vs docker-compose (v1)
+- Ne pas ajouter de watermarks ou branding
