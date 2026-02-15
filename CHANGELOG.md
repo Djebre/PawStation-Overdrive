@@ -289,7 +289,7 @@ Aucun bug critique identifié dans la v1.0.0.
 
 ## 📄 Licence
 
-Tous droits réservés - Projet créé pour convention furry Space Groove 2026.
+Tous droits réservés - Projet créé pour convention Space Groove 2026.
 
 ---
 
