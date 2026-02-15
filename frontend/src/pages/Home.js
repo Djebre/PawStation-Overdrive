@@ -53,7 +53,7 @@ export default function Home() {
       gradient: 'from-retro-gold to-acid-green',
       enabled: gameCEnabled
     }
-  ].filter(game => game.enabled); // Filtrer les jeux désactivés
+  ]; // Show all games, disabled ones will display "Coming Soon"
 
   return (
     <div className="min-h-screen bg-space-black relative overflow-hidden">

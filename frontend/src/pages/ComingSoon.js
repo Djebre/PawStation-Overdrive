@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Sparkles } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function ComingSoon({ gameName }) {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-space-black relative overflow-hidden flex items-center justify-center">
@@ -15,10 +17,10 @@ export default function ComingSoon({ gameName }) {
             {gameName}
           </h1>
           <p className="text-lg font-rajdhani text-cyan-pop mb-2">
-            En cours de développement
+            {t('comingSoon.title')}
           </p>
           <p className="text-gray-400 font-rajdhani">
-            Ce jeu sera bientôt disponible. Restez à l'écoute !
+            {t('comingSoon.message')}
           </p>
         </div>
 
@@ -28,7 +30,7 @@ export default function ComingSoon({ gameName }) {
           data-testid="back-home-button"
         >
           <ArrowLeft className="w-5 h-5" />
-          Retour au menu
+          {t('comingSoon.backHome')}
         </button>
       </div>
     </div>

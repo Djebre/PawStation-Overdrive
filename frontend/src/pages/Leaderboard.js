@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Trophy, Medal } from 'lucide-react';
 import axios from 'axios';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 export default function Leaderboard() {
   const navigate = useNavigate();
+  const { language, t } = useLanguage();
   const [scores, setScores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
