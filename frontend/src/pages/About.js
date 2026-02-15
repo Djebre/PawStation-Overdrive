@@ -116,11 +116,11 @@ Cette application utilise des technologies modernes pour offrir une expérience 
             data-testid="back-button"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span className="font-rajdhani font-bold">Retour</span>
+            <span className="font-rajdhani font-bold">{language === 'en' ? 'Back' : 'Retour'}</span>
           </button>
           
           <h1 className="text-4xl md:text-5xl font-orbitron font-black text-white mb-4" data-testid="about-title">
-            À Propos
+            {language === 'en' ? 'About' : 'À Propos'}
           </h1>
         </header>
 
@@ -129,7 +129,9 @@ Cette application utilise des technologies modernes pour offrir une expérience 
           <div className="bg-deep-purple/30 backdrop-blur-xl border border-white/10 rounded-xl p-6 md:p-8 mb-8">
             {loading ? (
               <div className="text-center py-8">
-                <div className="text-cyan-pop font-rajdhani text-lg animate-pulse">Chargement...</div>
+                <div className="text-cyan-pop font-rajdhani text-lg animate-pulse">
+                  {language === 'en' ? 'Loading...' : 'Chargement...'}
+                </div>
               </div>
             ) : (
               <div 
