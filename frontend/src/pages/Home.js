@@ -126,7 +126,7 @@ export default function Home() {
                       </p>
                       {!game.available && (
                         <span className="inline-block mt-2 text-xs font-accent text-retro-gold uppercase">
-                          Coming Soon
+                          {t('games.comingSoon')}
                         </span>
                       )}
                     </div>
