@@ -3,8 +3,8 @@ export const translations = {
     // Home
     home: {
       title: 'Space Groove',
-      subtitle: 'Arcade Collection',
-      leaderboard: 'Leaderboard',
+      subtitle: 'Collection Arcade',
+      leaderboard: 'Classement',
       about: 'À Propos',
       maintenance: 'Mode Maintenance',
       maintenanceMsg: 'Les jeux sont temporairement indisponibles. Merci de votre patience !',
@@ -14,35 +14,35 @@ export const translations = {
     games: {
       gameA: {
         title: 'Groove Orbit Runner',
-        subtitle: 'Arcade Skill-Based',
-        description: 'Change orbits, dodge obstacles, survive the disco cosmos',
+        subtitle: 'Arcade Compétitif',
+        description: 'Changez d\'orbite, esquivez les obstacles, survivez au cosmos disco',
       },
       gameB: {
         title: 'Space Groove Drift',
-        subtitle: 'Chill Aesthetic',
-        description: 'Surf cosmic waves in a vaporwave paradise',
+        subtitle: 'Chill Esthétique',
+        description: 'Surfez sur les ondes cosmiques dans un paradis vaporwave',
       },
       gameC: {
         title: 'Groove Arena Overdrive',
-        subtitle: 'Competitive Hardcore',
-        description: 'Dash to the beat, survive the overdrive',
+        subtitle: 'Hardcore Compétitif',
+        description: 'Dashez au rythme, survivez à l\'overdrive',
       },
       comingSoon: 'Bientôt disponible',
     },
     // Game
     game: {
-      tapToChange: 'TAP TO CHANGE ORBIT',
-      gameOver: 'Game Over!',
+      tapToChange: 'TOUCHEZ POUR CHANGER D\'ORBITE',
+      gameOver: 'Game Over !',
       points: 'Points',
       yourName: 'Votre nom',
       enterName: 'Entrez votre nom',
-      submitScore: 'Soumettre le score',
+      submitScore: 'Envoyer le score',
       playAgain: 'Rejouer',
       submitting: 'Envoi...',
     },
     // Leaderboard
     leaderboard: {
-      title: 'Leaderboard',
+      title: 'Classement',
       back: 'Retour',
       allGames: 'Tous les jeux',
       orbitRunner: 'Orbit Runner',
@@ -61,7 +61,7 @@ export const translations = {
       devops: 'DevOps',
       design: 'Design',
       version: 'Version 1.0.0 • Février 2026',
-      footer: 'PawStation Overdrive • Space Groove Arcade Collection',
+      footer: 'PawStation Overdrive • Collection Arcade Space Groove',
     },
     // Coming Soon
     comingSoon: {
