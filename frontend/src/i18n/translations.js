@@ -53,6 +53,7 @@ export const translations = {
       loading: 'Chargement...',
       noScores: 'Aucun score enregistré',
       beFirst: 'Soyez le premier à jouer !',
+      export: 'Exporter CSV',
     },
     // About
     about: {
@@ -146,6 +147,7 @@ export const translations = {
       loading: 'Loading...',
       noScores: 'No scores yet',
       beFirst: 'Be the first to play!',
+      export: 'Export CSV',
     },
     // About
     about: {
