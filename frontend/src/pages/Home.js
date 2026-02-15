@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { Rocket, Waves, Zap, Trophy, Info } from 'lucide-react';
 import { useLanguage } from '@/i18n/LanguageContext';
 import LanguageSelector from '@/components/LanguageSelector';
+import MusicControl from '@/components/MusicControl';
+import { useMusic } from '@/hooks/useMusic';
 
 export default function Home() {
   const navigate = useNavigate();
