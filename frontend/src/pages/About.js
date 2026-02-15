@@ -161,7 +161,9 @@ Cette application utilise des technologies modernes pour offrir une expérience 
           </div>
 
           {/* Tech Stack */}
-          <h2 className="text-3xl font-orbitron font-black text-white mb-6">Stack Technique</h2>
+          <h2 className="text-3xl font-orbitron font-black text-white mb-6">
+            {language === 'en' ? 'Tech Stack' : 'Stack Technique'}
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {techStack.map((category) => {
               const Icon = category.icon;
