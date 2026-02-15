@@ -115,6 +115,15 @@ export default function Home() {
           <Trophy className="w-6 h-6" />
           Leaderboard
         </button>
+
+        <button
+          onClick={() => navigate('/about')}
+          className="w-full py-3 px-6 bg-deep-purple border-2 border-cyan-pop text-cyan-pop font-orbitron font-bold uppercase tracking-wider rounded-lg hover:bg-cyan-pop/10 transition-all flex items-center justify-center gap-3"
+          data-testid="about-button"
+        >
+          <Info className="w-5 h-5" />
+          À Propos
+        </button>
       </div>
     </div>
   );
