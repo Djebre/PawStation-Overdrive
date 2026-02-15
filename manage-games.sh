@@ -163,8 +163,10 @@ set_maintenance() {
 reload_config() {
     echo -e "${CYAN}🔄 Redémarrage avec la nouvelle configuration...${NC}"
     
-    # Charger les variables
-    export $(cat $CONFIG_FILE | xargs)
+    # Charger les variables (ignorer les commentaires et lignes vides)
+    set -a
+    source <(grep -v '^#' $CONFIG_FILE | grep -v '^[[:space:]]*$')
+    set +a
     
     # Rebuild et restart frontend avec docker-compose
     if command -v docker-compose &> /dev/null; then
