@@ -100,5 +100,6 @@ export const useMusic = (musicPath, { autoplay = true, loop = true, volume = 0.5
     stop,
     toggleMute,
     setVolume,
+    audioElement: audioRef.current,
   };
 };
