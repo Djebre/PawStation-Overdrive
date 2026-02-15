@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Trophy, Medal } from 'lucide-react';
+import { ArrowLeft, Trophy, Medal, Download } from 'lucide-react';
 import axios from 'axios';
 import { useLanguage } from '../i18n/LanguageContext';
 
@@ -28,6 +28,15 @@ export default function Leaderboard() {
       console.error('Error fetching leaderboard:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleExport = async () => {
+    try {
+      const params = filter !== 'all' ? `?game_type=${filter}` : '';
+      window.open(`${API}/leaderboard/export${params}`, '_blank');
+    } catch (error) {
+      console.error('Error exporting leaderboard:', error);
     }
   };
 
