@@ -1,9 +1,12 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Rocket, Waves, Zap, Trophy, Info } from 'lucide-react';
 import { useLanguage } from '@/i18n/LanguageContext';
 import LanguageSelector from '@/components/LanguageSelector';
 import MusicControl from '@/components/MusicControl';
+import AudioReactiveBackground from '@/components/AudioReactiveBackground';
 import { useMusic } from '@/hooks/useMusic';
+import { useAudioAnalyzer } from '@/hooks/useAudioAnalyzer';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -15,6 +18,16 @@ export default function Home() {
     loop: true,
     volume: 0.3,
   });
+
+  // Analyseur audio pour les effets visuels
+  const audioAnalyzer = useAudioAnalyzer(music.audioElement);
+
+  // Connecter l'analyseur quand la musique joue
+  useEffect(() => {
+    if (music.isPlaying && music.audioElement) {
+      audioAnalyzer.connect();
+    }
+  }, [music.isPlaying, music.audioElement, audioAnalyzer]);
 
   // Configuration des jeux depuis les variables d'environnement
   const gameAEnabled = process.env.REACT_APP_GAME_A_ENABLED !== 'false';
