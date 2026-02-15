@@ -1,0 +1,37 @@
+# Build stage
+FROM node:20-alpine AS build
+
+WORKDIR /app
+
+# Copy package.json first
+COPY package.json ./
+
+# Generate yarn.lock if it doesn't exist, or copy existing one
+COPY yarn.lock* ./
+
+# Install dependencies (will create yarn.lock if not present)
+RUN yarn install --frozen-lockfile || yarn install
+
+# Copy source code
+COPY . .
+
+# Build the app
+RUN yarn build
+
+# Production stage with Nginx
+FROM nginx:alpine AS production
+
+# Copy built files
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Copy nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port
+EXPOSE 80
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost/ || exit 1
+
+CMD ["nginx", "-g", "daemon off;"]
