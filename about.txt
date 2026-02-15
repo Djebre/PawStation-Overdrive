@@ -2,22 +2,7 @@
 
 ## Bienvenue sur PawStation Overdrive !
 
-PawStation Overdrive est une collection de jeux arcade sur le thème "Space Groove", conçue spécialement pour les conventions furry. Plongez dans un univers disco cosmique où les réflexes et l'adrénaline se mêlent aux néons et à la musique électronique.
-
-## Notre Mission
-
-Offrir une expérience de jeu unique et mémorable lors des conventions, avec des mécaniques simples mais addictives, et un leaderboard compétitif pour défier vos amis !
-
-## Les Jeux
-
-### Groove Orbit Runner (Disponible)
-Un jeu d'arcade skill-based où vous tournez autour d'une planète disco en évitant des obstacles. Changez d'orbite au bon moment et survivez le plus longtemps possible !
-
-### Space Groove Drift (Bientôt disponible)
-Une expérience chill où vous surfez sur des ondes cosmiques dans un univers vaporwave relaxant.
-
-### Groove Arena Overdrive (Bientôt disponible)
-Un jeu hardcore où vous devez dasher au rythme de la musique pour survivre dans une arène remplie d'ennemis dansants.
+PawStation Overdrive est une collection de jeux arcade sur le thème "Space Groove". Plongez dans un univers disco cosmique où les réflexes et l'adrénaline se mêlent aux néons et à la musique électronique.
 
 ## Technologies Utilisées
 
@@ -40,32 +25,49 @@ Un jeu hardcore où vous devez dasher au rythme de la musique pour survivre dans
 - Let's Encrypt - Certificats SSL
 
 ## Crédits
-
-- Concept et design: [Votre nom]
-- Développement: [Votre nom]
-- Musique: [À venir]
-- Artwork: Formes géométriques stylisées
+- Musique: Eyes To The Sky - Ben Reggie
 
 ## Contact
-
-Pour toute question ou suggestion, n'hésitez pas à nous contacter :
-- Site web: https://pawstation.djebre.fr
-- Email: [Votre email]
-- Discord: [Votre serveur Discord]
+- Telegram: https://t.me/djebre
 
 ---
 
 *Que la groove soit avec vous ! 🚀✨*
 
-## Changelog
+---
 
-**Version 1.0.0** - Février 2026
-- Lancement du premier jeu: Groove Orbit Runner
-- Système de leaderboard global
-- Interface de sélection des jeux
-- Optimisation mobile portrait
+# About PawStation Overdrive
+
+## Welcome to PawStation Overdrive!
+
+PawStation Overdrive is an arcade game collection with a "Space Groove" theme. Dive into a cosmic disco universe where reflexes and adrenaline blend with neon lights and electronic music.
+
+## Technologies Used
+
+**Frontend:**
+- React 19 - Modern UI framework
+- Phaser 3.90 - HTML5 game engine
+- Tailwind CSS - Design system
+- React Router - Navigation
+- Lucide React - Icons
+
+**Backend:**
+- FastAPI - High-performance Python framework
+- MongoDB - NoSQL database
+- Pydantic - Data validation
+- Motor - Async MongoDB driver
+
+**DevOps:**
+- Docker & Docker Compose - Containerization
+- Nginx - Reverse proxy and web server
+- Let's Encrypt - SSL certificates
+
+## Credits
+- Music: Eyes To The Sky - Ben Reggie
+
+## Contact
+- Telegram: https://t.me/djebre
 
 ---
 
-> 💡 Ce fichier peut être modifié à tout moment.
-> Éditez `/app/about.txt` pour personnaliser ce contenu.
+*May the groove be with you! 🚀✨*
