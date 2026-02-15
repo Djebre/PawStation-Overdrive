@@ -5,6 +5,7 @@ import LanguageSelector from '@/components/LanguageSelector';
 
 export default function Home() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   // Configuration des jeux depuis les variables d'environnement
   const gameAEnabled = process.env.REACT_APP_GAME_A_ENABLED !== 'false';
@@ -15,9 +16,9 @@ export default function Home() {
   const games = [
     {
       id: 'groove-orbit-runner',
-      title: 'Groove Orbit Runner',
-      subtitle: 'Arcade Skill-Based',
-      description: 'Change orbits, dodge obstacles, survive the disco cosmos',
+      title: t('games.gameA.title'),
+      subtitle: t('games.gameA.subtitle'),
+      description: t('games.gameA.description'),
       icon: Rocket,
       available: gameAEnabled && !maintenanceMode,
       gradient: 'from-neon-pink to-cyan-pop',
@@ -25,9 +26,9 @@ export default function Home() {
     },
     {
       id: 'space-groove-drift',
-      title: 'Space Groove Drift',
-      subtitle: 'Chill Aesthetic',
-      description: 'Surf cosmic waves in a vaporwave paradise',
+      title: t('games.gameB.title'),
+      subtitle: t('games.gameB.subtitle'),
+      description: t('games.gameB.description'),
       icon: Waves,
       available: gameBEnabled && !maintenanceMode,
       gradient: 'from-cyan-pop to-retro-gold',
@@ -35,9 +36,9 @@ export default function Home() {
     },
     {
       id: 'groove-arena-overdrive',
-      title: 'Groove Arena Overdrive',
-      subtitle: 'Competitive Hardcore',
-      description: 'Dash to the beat, survive the overdrive',
+      title: t('games.gameC.title'),
+      subtitle: t('games.gameC.subtitle'),
+      description: t('games.gameC.description'),
       icon: Zap,
       available: gameCEnabled && !maintenanceMode,
       gradient: 'from-retro-gold to-acid-green',
