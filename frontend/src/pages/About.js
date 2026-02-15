@@ -2,15 +2,17 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Code, Palette, Gamepad2, Server, Shield } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function About() {
   const navigate = useNavigate();
+  const { language, t } = useLanguage();
   const [aboutContent, setAboutContent] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Essayer de charger le fichier about.txt
-    fetch('/about.txt')
+    // Load the about file based on the current language
+    fetch(`/about.${language}.txt`)
       .then(response => {
         if (response.ok) {
           return response.text();
@@ -22,16 +24,32 @@ export default function About() {
         setLoading(false);
       })
       .catch(() => {
-        // Fallback content si le fichier n'existe pas
-        setAboutContent(getDefaultContent());
-        setLoading(false);
+        // Fallback to default language file
+        fetch('/about.fr.txt')
+          .then(response => response.text())
+          .then(text => {
+            setAboutContent(text);
+            setLoading(false);
+          })
+          .catch(() => {
+            setAboutContent(getDefaultContent());
+            setLoading(false);
+          });
       });
-  }, []);
+  }, [language]);
 
   const getDefaultContent = () => {
-    return `# À Propos de PawStation Overdrive
+    return language === 'en' 
+      ? `# About PawStation Overdrive
 
-Une collection de jeux arcade sur le thème Space Groove, conçue pour les conventions furry.
+An arcade game collection with a Space Groove theme.
+
+## Technologies Used
+
+This application uses modern technologies to deliver a smooth and performant gaming experience.`
+      : `# À Propos de PawStation Overdrive
+
+Une collection de jeux arcade sur le thème Space Groove.
 
 ## Technologies Utilisées
 
