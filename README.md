@@ -373,6 +373,24 @@ Pour toute question ou problème technique pendant la convention :
 
 ---
 
+## 🐳 Déploiement Docker
+
+### Quick Start avec Docker
+```bash
+# Cloner le repo
+git clone https://github.com/Djebre/PawStation-Overdrive.git
+cd PawStation-Overdrive
+
+# Lancer avec le script d'installation
+chmod +x deploy.sh
+./deploy.sh
+```
+
+### Déploiement Production sur pawstation.djebre.fr
+Voir le guide complet : **[DEPLOYMENT_DOCKER.md](./DEPLOYMENT_DOCKER.md)**
+
+---
+
 ## 🎉 Convention Tips
 
 ### Pour les Organisateurs
@@ -386,6 +404,9 @@ Pour toute question ou problème technique pendant la convention :
 2. Jouez en mode portrait pour une expérience optimale
 3. Le son sera ajouté prochainement - restez à l'écoute !
 4. Partagez vos meilleurs scores sur les réseaux sociaux avec #SpaceGroove
+
+### 🌐 Site Live
+**https://pawstation.djebre.fr**
 
 ---
 
