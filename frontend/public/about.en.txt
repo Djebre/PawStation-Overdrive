@@ -1,0 +1,35 @@
+# About PawStation Overdrive
+
+## Welcome to PawStation Overdrive!
+
+PawStation Overdrive is an arcade game collection with a "Space Groove" theme. Dive into a cosmic disco universe where reflexes and adrenaline blend with neon lights and electronic music.
+
+## Technologies Used
+
+**Frontend:**
+- React 19 - Modern UI framework
+- Phaser 3.90 - HTML5 game engine
+- Tailwind CSS - Design system
+- React Router - Navigation
+- Lucide React - Icons
+
+**Backend:**
+- FastAPI - High-performance Python framework
+- MongoDB - NoSQL database
+- Pydantic - Data validation
+- Motor - Async MongoDB driver
+
+**DevOps:**
+- Docker & Docker Compose - Containerization
+- Nginx - Reverse proxy and web server
+- Let's Encrypt - SSL certificates
+
+## Credits
+- Music: Eyes To The Sky - Ben Reggie
+
+## Contact
+- Telegram: https://t.me/djebre
+
+---
+
+*May the groove be with you!*
