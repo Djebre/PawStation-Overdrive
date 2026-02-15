@@ -58,47 +58,47 @@ Cette application utilise des technologies modernes pour offrir une expérience 
 
   const techStack = [
     {
-      category: 'Frontend',
+      category: t('about.frontend'),
       icon: Code,
       color: 'from-neon-pink to-cyan-pop',
       techs: [
-        { name: 'React 19', description: language === 'en' ? 'Modern UI framework' : 'Framework UI moderne' },
-        { name: 'Phaser 3.90', description: language === 'en' ? 'HTML5 game engine' : 'Moteur de jeu HTML5' },
+        { name: 'React 19', description: t('about.techReact') },
+        { name: 'Phaser 3.90', description: t('about.techPhaser') },
         { name: 'Tailwind CSS', description: 'Design system' },
         { name: 'React Router 7', description: 'Navigation' }
       ]
     },
     {
-      category: 'Backend',
+      category: t('about.backend'),
       icon: Server,
       color: 'from-cyan-pop to-retro-gold',
       techs: [
-        { name: 'FastAPI', description: language === 'en' ? 'High-performance Python framework' : 'Framework Python haute performance' },
-        { name: 'MongoDB', description: language === 'en' ? 'NoSQL database' : 'Base de données NoSQL' },
-        { name: 'Pydantic', description: language === 'en' ? 'Data validation' : 'Validation des données' },
-        { name: 'Motor', description: language === 'en' ? 'Async MongoDB driver' : 'Driver MongoDB async' }
+        { name: 'FastAPI', description: t('about.techFastAPI') },
+        { name: 'MongoDB', description: t('about.techMongoDB') },
+        { name: 'Pydantic', description: t('about.techPydantic') },
+        { name: 'Motor', description: t('about.techMotor') }
       ]
     },
     {
-      category: 'DevOps',
+      category: t('about.devops'),
       icon: Shield,
       color: 'from-retro-gold to-acid-green',
       techs: [
-        { name: 'Docker', description: language === 'en' ? 'Containerization' : 'Conteneurisation' },
+        { name: 'Docker', description: t('about.techDocker') },
         { name: 'Nginx', description: 'Reverse proxy' },
-        { name: 'Let\'s Encrypt', description: language === 'en' ? 'SSL certificates' : 'Certificats SSL' },
-        { name: 'Docker Compose', description: language === 'en' ? 'Orchestration' : 'Orchestration' }
+        { name: 'Let\'s Encrypt', description: t('about.techSSL') },
+        { name: 'Docker Compose', description: 'Orchestration' }
       ]
     },
     {
-      category: 'Design',
+      category: t('about.design'),
       icon: Palette,
       color: 'from-acid-green to-neon-pink',
       techs: [
-        { name: 'Orbitron', description: language === 'en' ? 'Title typography' : 'Typographie titres' },
-        { name: 'Rajdhani', description: language === 'en' ? 'Body typography' : 'Typographie corps' },
-        { name: 'Press Start 2P', description: language === 'en' ? 'Accent typography' : 'Typographie accents' },
-        { name: 'Disco Cosmic', description: language === 'en' ? 'Neon theme' : 'Thème néon' }
+        { name: 'Orbitron', description: t('about.techOrbitron') },
+        { name: 'Rajdhani', description: t('about.techRajdhani') },
+        { name: 'Press Start 2P', description: t('about.techPressStart') },
+        { name: 'Disco Cosmic', description: t('about.techTheme') }
       ]
     }
   ];
