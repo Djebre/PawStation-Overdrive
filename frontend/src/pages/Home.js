@@ -70,6 +70,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-space-black relative overflow-hidden">
+      {/* Fond réactif à la musique avec particules */}
+      <AudioReactiveBackground
+        bassLevel={audioAnalyzer.bassLevel}
+        midLevel={audioAnalyzer.midLevel}
+        highLevel={audioAnalyzer.highLevel}
+        averageLevel={audioAnalyzer.averageLevel}
+        particleCount={60}
+      />
+      
       <div className="starfield"></div>
       
       <LanguageSelector />
