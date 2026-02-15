@@ -147,7 +147,7 @@ export default function Home() {
           data-testid="leaderboard-button"
         >
           <Trophy className="w-6 h-6" />
-          Leaderboard
+          {t('home.leaderboard')}
         </button>
 
         <button
@@ -156,7 +156,7 @@ export default function Home() {
           data-testid="about-button"
         >
           <Info className="w-5 h-5" />
-          À Propos
+          {t('home.about')}
         </button>
       </div>
     </div>
