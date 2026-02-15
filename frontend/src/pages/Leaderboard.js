@@ -57,11 +57,11 @@ export default function Leaderboard() {
             data-testid="back-button"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span className="font-rajdhani font-bold">Retour</span>
+            <span className="font-rajdhani font-bold">{t('leaderboard.back')}</span>
           </button>
           
           <h1 className="text-4xl font-orbitron font-black text-white mb-4" data-testid="leaderboard-title">
-            Leaderboard
+            {t('leaderboard.title')}
           </h1>
 
           <div className="flex gap-2 flex-wrap">
@@ -74,7 +74,7 @@ export default function Leaderboard() {
               }`}
               data-testid="filter-all"
             >
-              Tous les jeux
+              {t('leaderboard.allGames')}
             </button>
             <button
               onClick={() => setFilter('groove-orbit-runner')}
@@ -85,7 +85,7 @@ export default function Leaderboard() {
               }`}
               data-testid="filter-groove-orbit"
             >
-              Orbit Runner
+              {t('leaderboard.orbitRunner')}
             </button>
           </div>
         </header>
@@ -93,13 +93,13 @@ export default function Leaderboard() {
         <div className="flex-1 bg-deep-purple/30 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden">
           {loading ? (
             <div className="flex items-center justify-center h-64">
-              <div className="text-cyan-pop font-rajdhani text-lg animate-pulse">Chargement...</div>
+              <div className="text-cyan-pop font-rajdhani text-lg animate-pulse">{t('leaderboard.loading')}</div>
             </div>
           ) : scores.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-64 text-center p-6">
               <Medal className="w-16 h-16 text-gray-600 mb-4" />
-              <p className="text-gray-400 font-rajdhani text-lg">Aucun score enregistré</p>
-              <p className="text-gray-500 font-rajdhani text-sm mt-2">Soyez le premier à jouer !</p>
+              <p className="text-gray-400 font-rajdhani text-lg">{t('leaderboard.noScores')}</p>
+              <p className="text-gray-500 font-rajdhani text-sm mt-2">{t('leaderboard.beFirst')}</p>
             </div>
           ) : (
             <div className="divide-y divide-white/5">
@@ -120,7 +120,7 @@ export default function Leaderboard() {
                         {entry.name}
                       </p>
                       <p className="text-xs text-gray-500 font-rajdhani">
-                        {new Date(entry.timestamp).toLocaleDateString('fr-FR', {
+                        {new Date(entry.timestamp).toLocaleDateString(language === 'en' ? 'en-US' : 'fr-FR', {
                           day: 'numeric',
                           month: 'short',
                           hour: '2-digit',
