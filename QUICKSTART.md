@@ -1,94 +1,129 @@
 # 🚀 Quick Start Guide
 
-## For Local Development
+## Installation
 
-### Prerequisites
-- Docker & Docker Compose installed
-- Git
+### With Docker (Recommended)
 
-### Installation
 ```bash
-# Clone the repository
 git clone https://github.com/Djebre/PawStation-Overdrive.git
 cd PawStation-Overdrive
-
-# Start development environment
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-
-# Access the application
-# Frontend: http://localhost:3000
-# Backend API: http://localhost:8001/api
+docker compose up -d
 ```
+
+Access: http://localhost:3000
 
 ### Without Docker
 
-#### Backend
+**Backend:**
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+source venv/bin/activate
 pip install -r requirements.txt
 uvicorn server:app --reload
 ```
 
-#### Frontend
+**Frontend:**
 ```bash
 cd frontend
 yarn install
 yarn start
 ```
 
-## For Production Deployment
+---
 
-### On Your VPS
+## Game Management
 
-1. **Install Docker & Docker Compose**
-   ```bash
-   curl -fsSL https://get.docker.com | sh
-   sudo usermod -aG docker $USER
-   ```
+```bash
+# Show status
+./manage-games.sh status
 
-2. **Clone and Deploy**
-   ```bash
-   git clone https://github.com/Djebre/PawStation-Overdrive.git
-   cd PawStation-Overdrive
-   ./deploy.sh
-   ```
+# Enable/disable games
+./manage-games.sh enable a    # Game A
+./manage-games.sh disable b   # Game B
 
-3. **Setup SSL (for pawstation.djebre.fr)**
-   ```bash
-   sudo certbot certonly --standalone -d pawstation.djebre.fr
-   sudo cp /etc/letsencrypt/live/pawstation.djebre.fr/*.pem nginx/ssl/
-   docker-compose -f docker-compose.prod.yml restart frontend
-   ```
+# All games
+./manage-games.sh enable-all
+./manage-games.sh disable-all
 
-## Architecture
+# Maintenance mode
+./manage-games.sh maintenance on
+./manage-games.sh maintenance off
 
+# Apply changes
+./manage-games.sh reload
 ```
-PawStation-Overdrive/
-├── frontend/          # React + Phaser.js game
-├── backend/           # FastAPI + MongoDB
-├── nginx/             # Production Nginx config
-├── docker-compose.yml # Development
-└── deploy.sh          # Automated deployment
-```
-
-## Documentation
-
-- **[README.md](./README.md)** - Complete project documentation
-- **[DEPLOYMENT_DOCKER.md](./DEPLOYMENT_DOCKER.md)** - Full Docker deployment guide (French)
-- **[VISUAL_GUIDE.md](./VISUAL_GUIDE.md)** - Visual design guide
-- **[CHANGELOG.md](./CHANGELOG.md)** - Version history
-
-## Live Demo
-
-**🌐 https://pawstation.djebre.fr**
-
-Try the game, compete on the leaderboard, and have fun! 🎮✨
 
 ---
 
-For detailed setup and troubleshooting, see the full documentation.
+## Configuration Files
+
+**`.env.games`** - Game configuration
+```env
+GAME_A_ENABLED=true
+GAME_B_ENABLED=false
+GAME_C_ENABLED=false
+MAINTENANCE_MODE=false
+```
+
+**`about.txt`** - About page content (Markdown supported)
+
+---
+
+## Production Deployment
+
+### 1. Install Docker
+```bash
+curl -fsSL https://get.docker.com | sh
+```
+
+### 2. Setup SSL
+```bash
+sudo certbot certonly --standalone -d pawstation.djebre.fr
+mkdir -p nginx/ssl
+sudo cp /etc/letsencrypt/live/pawstation.djebre.fr/*.pem nginx/ssl/
+```
+
+### 3. Deploy
+```bash
+docker compose -f docker-compose.prod.yml up -d
+```
+
+---
+
+## Useful Commands
+
+```bash
+# View logs
+docker compose logs -f
+
+# Restart service
+docker compose restart frontend
+
+# Stop all
+docker compose down
+
+# Rebuild
+docker compose up -d --build
+```
+
+---
+
+## Troubleshooting
+
+### Port already in use
+```bash
+sudo lsof -i :3000
+sudo kill -9 <PID>
+```
+
+### Docker issues
+```bash
+docker compose down
+docker system prune -af
+docker compose up -d --build
+```
+
+---
+
+For more details, see [README.md](./README.md)
