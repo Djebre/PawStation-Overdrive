@@ -96,6 +96,14 @@ export default function Leaderboard() {
             >
               {t('leaderboard.orbitRunner')}
             </button>
+            <button
+              onClick={handleExport}
+              className="px-4 py-2 rounded-lg font-rajdhani font-bold text-sm transition-all bg-retro-gold/20 text-retro-gold border border-retro-gold/50 hover:bg-retro-gold/30 flex items-center gap-2"
+              data-testid="export-button"
+            >
+              <Download className="w-4 h-4" />
+              {t('leaderboard.export')}
+            </button>
           </div>
         </header>
 
