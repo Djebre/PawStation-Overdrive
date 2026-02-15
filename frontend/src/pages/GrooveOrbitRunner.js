@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import Phaser from 'phaser';
 import axios from 'axios';
 import { X, Trophy } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 export default function GrooveOrbitRunner() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const gameRef = useRef(null);
   const phaserGameRef = useRef(null);
   const [gameOver, setGameOver] = useState(false);
