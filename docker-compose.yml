@@ -40,6 +40,10 @@ services:
       dockerfile: Dockerfile
       args:
         - REACT_APP_BACKEND_URL=http://localhost:8001
+        - REACT_APP_GAME_A_ENABLED=${GAME_A_ENABLED:-true}
+        - REACT_APP_GAME_B_ENABLED=${GAME_B_ENABLED:-false}
+        - REACT_APP_GAME_C_ENABLED=${GAME_C_ENABLED:-false}
+        - REACT_APP_MAINTENANCE_MODE=${MAINTENANCE_MODE:-false}
     container_name: spacegroove-frontend
     restart: unless-stopped
     ports:
@@ -48,6 +52,11 @@ services:
       - backend
     networks:
       - spacegroove-network
+    environment:
+      - REACT_APP_GAME_A_ENABLED=${GAME_A_ENABLED:-true}
+      - REACT_APP_GAME_B_ENABLED=${GAME_B_ENABLED:-false}
+      - REACT_APP_GAME_C_ENABLED=${GAME_C_ENABLED:-false}
+      - REACT_APP_MAINTENANCE_MODE=${MAINTENANCE_MODE:-false}
 
 volumes:
   mongodb_data:
