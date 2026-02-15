@@ -60,6 +60,12 @@ export default function Home() {
       <div className="starfield"></div>
       
       <LanguageSelector />
+      <MusicControl
+        isMuted={music.isMuted}
+        toggleMute={music.toggleMute}
+        volume={music.volume}
+        setVolume={music.setVolume}
+      />
       
       <div className="relative z-10 flex flex-col min-h-screen max-w-md mx-auto p-6">
         <header className="text-center py-12">
