@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Rocket, Waves, Zap, Trophy } from 'lucide-react';
+import { Rocket, Waves, Zap, Trophy, Info } from 'lucide-react';
 
 export default function Home() {
   const navigate = useNavigate();
