@@ -243,7 +243,7 @@ export default function GrooveOrbitRunner() {
       navigate('/leaderboard');
     } catch (error) {
       console.error('Error submitting score:', error);
-      alert('Erreur lors de la soumission du score');
+      alert(t('game.submitError'));
     } finally {
       setSubmitting(false);
     }

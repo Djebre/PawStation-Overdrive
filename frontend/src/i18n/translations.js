@@ -39,6 +39,7 @@ export const translations = {
       submitScore: 'Envoyer le score',
       playAgain: 'Rejouer',
       submitting: 'Envoi...',
+      submitError: 'Erreur lors de la soumission du score',
     },
     // Leaderboard
     leaderboard: {
@@ -115,6 +116,7 @@ export const translations = {
       submitScore: 'Submit Score',
       playAgain: 'Play Again',
       submitting: 'Submitting...',
+      submitError: 'Error submitting score',
     },
     // Leaderboard
     leaderboard: {
