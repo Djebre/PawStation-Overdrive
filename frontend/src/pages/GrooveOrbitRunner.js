@@ -272,26 +272,26 @@ export default function GrooveOrbitRunner() {
 
             <div className="text-center mb-6">
               <h2 className="text-3xl font-orbitron font-black text-white mb-2">
-                Game Over!
+                {t('game.gameOver')}
               </h2>
               <p className="text-5xl font-orbitron font-black text-neon-pink mb-2" data-testid="final-score">
                 {finalScore}
               </p>
               <p className="text-sm font-rajdhani text-cyan-pop uppercase tracking-wider">
-                Points
+                {t('game.points')}
               </p>
             </div>
 
             <form onSubmit={handleSubmitScore} className="space-y-4">
               <div>
                 <label className="block text-sm font-rajdhani text-gray-400 mb-2">
-                  Votre nom
+                  {t('game.yourName')}
                 </label>
                 <input
                   type="text"
                   value={playerName}
                   onChange={(e) => setPlayerName(e.target.value)}
-                  placeholder="Entrez votre nom"
+                  placeholder={t('game.enterName')}
                   maxLength={20}
                   className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white placeholder-gray-500 focus:border-neon-pink focus:ring-1 focus:ring-neon-pink transition-all outline-none font-rajdhani"
                   required
@@ -306,7 +306,7 @@ export default function GrooveOrbitRunner() {
                 data-testid="submit-score-button"
               >
                 <Trophy className="w-5 h-5" />
-                {submitting ? 'Envoi...' : 'Soumettre le score'}
+                {submitting ? t('game.submitting') : t('game.submitScore')}
               </button>
 
               <button
@@ -315,7 +315,7 @@ export default function GrooveOrbitRunner() {
                 className="w-full py-3 px-6 bg-deep-purple border-2 border-cyan-pop text-cyan-pop font-orbitron font-bold uppercase tracking-wider rounded-lg hover:bg-cyan-pop/10 transition-all"
                 data-testid="play-again-button"
               >
-                Rejouer
+                {t('game.playAgain')}
               </button>
             </form>
           </div>
