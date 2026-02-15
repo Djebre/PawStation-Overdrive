@@ -94,7 +94,7 @@ export default function GrooveOrbitRunner() {
       });
 
       // Tap hint
-      tapHint = scene.add.text(195, 700, 'TAP TO CHANGE ORBIT', {
+      tapHint = scene.add.text(195, 700, t('game.tapToChange'), {
         fontFamily: 'Rajdhani',
         fontSize: '14px',
         color: '#ffffff',
