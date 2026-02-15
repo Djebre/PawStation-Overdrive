@@ -101,8 +101,8 @@ docker compose down
 
 ## 📄 Licence
 
-Projet créé pour convention furry Space Groove 2026.
+Projet personnel Space Groove 2026.
 
 ---
 
-**Made with ❤️ for the furry community**
+**Made with ❤️**
