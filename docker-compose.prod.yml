@@ -21,7 +21,7 @@ services:
     environment:
       - MONGO_URL=mongodb://mongodb:27017
       - DB_NAME=spacegroove_production
-      - CORS_ORIGINS=${CORS_ORIGINS:-*}
+      - CORS_ORIGINS=https://pawstation.djebre.fr,https://www.pawstation.djebre.fr
     expose:
       - "8001"
     depends_on:
@@ -35,7 +35,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - REACT_APP_BACKEND_URL=${BACKEND_URL:-https://yourdomain.com}
+        - REACT_APP_BACKEND_URL=https://pawstation.djebre.fr
     container_name: spacegroove-frontend-prod
     restart: always
     ports:
@@ -46,7 +46,8 @@ services:
     networks:
       - spacegroove-network
     volumes:
-      - ./ssl:/etc/nginx/ssl:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./nginx/nginx.prod.conf:/etc/nginx/conf.d/default.conf:ro
 
 volumes:
   mongodb_prod_data:
