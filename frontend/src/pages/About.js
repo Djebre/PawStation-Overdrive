@@ -62,8 +62,8 @@ Cette application utilise des technologies modernes pour offrir une expérience 
       icon: Code,
       color: 'from-neon-pink to-cyan-pop',
       techs: [
-        { name: 'React 19', description: 'Framework UI moderne' },
-        { name: 'Phaser 3.90', description: 'Moteur de jeu HTML5' },
+        { name: 'React 19', description: language === 'en' ? 'Modern UI framework' : 'Framework UI moderne' },
+        { name: 'Phaser 3.90', description: language === 'en' ? 'HTML5 game engine' : 'Moteur de jeu HTML5' },
         { name: 'Tailwind CSS', description: 'Design system' },
         { name: 'React Router 7', description: 'Navigation' }
       ]
@@ -73,10 +73,10 @@ Cette application utilise des technologies modernes pour offrir une expérience 
       icon: Server,
       color: 'from-cyan-pop to-retro-gold',
       techs: [
-        { name: 'FastAPI', description: 'Framework Python haute performance' },
-        { name: 'MongoDB', description: 'Base de données NoSQL' },
-        { name: 'Pydantic', description: 'Validation des données' },
-        { name: 'Motor', description: 'Driver MongoDB async' }
+        { name: 'FastAPI', description: language === 'en' ? 'High-performance Python framework' : 'Framework Python haute performance' },
+        { name: 'MongoDB', description: language === 'en' ? 'NoSQL database' : 'Base de données NoSQL' },
+        { name: 'Pydantic', description: language === 'en' ? 'Data validation' : 'Validation des données' },
+        { name: 'Motor', description: language === 'en' ? 'Async MongoDB driver' : 'Driver MongoDB async' }
       ]
     },
     {
@@ -84,10 +84,10 @@ Cette application utilise des technologies modernes pour offrir une expérience 
       icon: Shield,
       color: 'from-retro-gold to-acid-green',
       techs: [
-        { name: 'Docker', description: 'Conteneurisation' },
+        { name: 'Docker', description: language === 'en' ? 'Containerization' : 'Conteneurisation' },
         { name: 'Nginx', description: 'Reverse proxy' },
-        { name: 'Let\'s Encrypt', description: 'Certificats SSL' },
-        { name: 'Docker Compose', description: 'Orchestration' }
+        { name: 'Let\'s Encrypt', description: language === 'en' ? 'SSL certificates' : 'Certificats SSL' },
+        { name: 'Docker Compose', description: language === 'en' ? 'Orchestration' : 'Orchestration' }
       ]
     },
     {
@@ -95,10 +95,10 @@ Cette application utilise des technologies modernes pour offrir une expérience 
       icon: Palette,
       color: 'from-acid-green to-neon-pink',
       techs: [
-        { name: 'Orbitron', description: 'Typographie titres' },
-        { name: 'Rajdhani', description: 'Typographie corps' },
-        { name: 'Press Start 2P', description: 'Typographie accents' },
-        { name: 'Disco Cosmic', description: 'Thème néon' }
+        { name: 'Orbitron', description: language === 'en' ? 'Title typography' : 'Typographie titres' },
+        { name: 'Rajdhani', description: language === 'en' ? 'Body typography' : 'Typographie corps' },
+        { name: 'Press Start 2P', description: language === 'en' ? 'Accent typography' : 'Typographie accents' },
+        { name: 'Disco Cosmic', description: language === 'en' ? 'Neon theme' : 'Thème néon' }
       ]
     }
   ];
