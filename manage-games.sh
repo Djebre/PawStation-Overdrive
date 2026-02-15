@@ -156,8 +156,8 @@ reload_config() {
         export "$key=$value"
     done < <(grep -v '^[[:space:]]*#' "$CONFIG_FILE" | grep -v '^[[:space:]]*$')
     
-    # Check if docker-compose is available
-    if command -v docker-compose &> /dev/null; then
+    # Check if docker compose is available
+    if command -v docker compose &> /dev/null; then
         echo ""
         echo "Building with environment variables:"
         echo "  GAME_A_ENABLED=${GAME_A_ENABLED}"
@@ -166,7 +166,7 @@ reload_config() {
         echo "  MAINTENANCE_MODE=${MAINTENANCE_MODE}"
         echo ""
         
-        docker-compose up -d --build frontend
+        docker compose up -d --build frontend
         echo -e "${GREEN}✅ Frontend restarted successfully${NC}"
     else
         echo -e "${YELLOW}⚠️  Docker Compose not found${NC}"

@@ -32,7 +32,7 @@ if ! command -v docker &> /dev/null; then
 fi
 
 # Check Docker Compose
-if ! command -v docker-compose &> /dev/null; then
+if ! command -v docker compose &> /dev/null; then
     echo -e "${RED}❌ Docker Compose n'est pas installé${NC}"
     echo "Voir: https://docs.docker.com/compose/install/"
     exit 1
@@ -88,18 +88,18 @@ fi
 # Stop existing services
 echo ""
 echo -e "${YELLOW}🛑 Arrêt des services existants...${NC}"
-docker-compose down 2>/dev/null || true
-docker-compose -f docker-compose.prod.yml down 2>/dev/null || true
+docker compose down 2>/dev/null || true
+docker compose -f docker compose.prod.yml down 2>/dev/null || true
 
 # Build and start
 echo ""
 if [ "$USE_DEV" = true ]; then
     echo -e "${YELLOW}🔨 Build et démarrage en mode DÉVELOPPEMENT...${NC}"
-    docker-compose up -d --build
+    docker compose up -d --build
     DOMAIN="http://localhost:3000"
 else
     echo -e "${YELLOW}🔨 Build et démarrage en mode PRODUCTION...${NC}"
-    docker-compose -f docker-compose.prod.yml up -d --build
+    docker compose -f docker compose.prod.yml up -d --build
     DOMAIN="https://pawstation.djebre.fr"
 fi
 
@@ -113,11 +113,11 @@ echo ""
 echo -e "${YELLOW}🔍 Vérification des services...${NC}"
 
 if [ "$USE_DEV" = true ]; then
-    CONTAINERS=$(docker-compose ps -q | wc -l)
-    RUNNING=$(docker-compose ps | grep "Up" | wc -l)
+    CONTAINERS=$(docker compose ps -q | wc -l)
+    RUNNING=$(docker compose ps | grep "Up" | wc -l)
 else
-    CONTAINERS=$(docker-compose -f docker-compose.prod.yml ps -q | wc -l)
-    RUNNING=$(docker-compose -f docker-compose.prod.yml ps | grep "Up" | wc -l)
+    CONTAINERS=$(docker compose -f docker compose.prod.yml ps -q | wc -l)
+    RUNNING=$(docker compose -f docker compose.prod.yml ps | grep "Up" | wc -l)
 fi
 
 if [ $RUNNING -eq $CONTAINERS ]; then
@@ -155,15 +155,15 @@ echo ""
 echo "📋 Commandes utiles:"
 echo ""
 if [ "$USE_DEV" = true ]; then
-    echo "  docker-compose logs -f          # Voir les logs"
-    echo "  docker-compose ps               # Status des services"
-    echo "  docker-compose restart backend  # Redémarrer backend"
-    echo "  docker-compose down             # Arrêter tout"
+    echo "  docker compose logs -f          # Voir les logs"
+    echo "  docker compose ps               # Status des services"
+    echo "  docker compose restart backend  # Redémarrer backend"
+    echo "  docker compose down             # Arrêter tout"
 else
-    echo "  docker-compose -f docker-compose.prod.yml logs -f          # Voir les logs"
-    echo "  docker-compose -f docker-compose.prod.yml ps               # Status des services"
-    echo "  docker-compose -f docker-compose.prod.yml restart backend  # Redémarrer backend"
-    echo "  docker-compose -f docker-compose.prod.yml down             # Arrêter tout"
+    echo "  docker compose -f docker compose.prod.yml logs -f          # Voir les logs"
+    echo "  docker compose -f docker compose.prod.yml ps               # Status des services"
+    echo "  docker compose -f docker compose.prod.yml restart backend  # Redémarrer backend"
+    echo "  docker compose -f docker compose.prod.yml down             # Arrêter tout"
 fi
 echo ""
 echo "📚 Documentation complète: DEPLOYMENT_DOCKER.md"
