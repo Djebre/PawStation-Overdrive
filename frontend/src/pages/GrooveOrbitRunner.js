@@ -239,7 +239,8 @@ export default function GrooveOrbitRunner() {
       await axios.post(`${API}/score`, {
         name: playerName.trim(),
         score: finalScore,
-        game_type: 'groove-orbit-runner'
+        game_type: 'groove-orbit-runner',
+        telegram: telegramUsername.trim() || null
       });
       navigate('/leaderboard');
     } catch (error) {
