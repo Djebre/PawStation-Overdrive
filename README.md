@@ -1,6 +1,6 @@
 # 🎮 PawStation Overdrive
 
-Collection de jeux arcade sur le thème Space Groove pour conventions furry.
+Collection de jeux arcade sur le thème Space Groove.
 
 **🌐 Live:** https://pawstation.djebre.fr
 
